@@ -46,7 +46,12 @@ app.use(function(req, res, next){
 
 
 app.get('/', (req, res)=>{
-    res.render('index')
+  Product.find()
+  .then(data=>{
+    console.log(data)
+    res.render('index', {data})
+  })
+    
 })
 
 
@@ -56,6 +61,7 @@ app.get('/products', (req, res)=>{
     var cart = req.session.cart
     Product.find()
     .then(data=>{
+      console.log(data)
       res.render('products', {products:data, cart})
     })
   } else{
@@ -76,7 +82,7 @@ app.post('/cart/:id', function (req, res, next) {
     cart.add(product, product.id);
       req.session.cart = cart;
       console.log(cart)
-      res.redirect('/products');
+      res.redirect('/');
      
   })
       
@@ -84,21 +90,26 @@ app.post('/cart/:id', function (req, res, next) {
  
 });
 
-app.get('/single', function (req, res){
-  res.render('single')
+app.get('/about', function (req, res){
+  res.render('contact')
 })
+
+app.get('/contact', function (req, res){
+  res.render('contact')
+})
+
 
 
 
 app.get('/cart', function (req, res, next) {
   if (!req.session.cart) {
-      return res.render('cart', {products: null});
+      return res.render('shopping-cart', {products: null});
   }
   var cart = new Cart(req.session.cart.items);
   //let products = cart.generateArray()
   //let totalPrice = cart.totalPrice
   //console.log(products)
-  res.render('cart', { products:cart.generateArray(), totalPrice:cart.totalPrice});
+  res.render('shopping-cart', { products:cart.generateArray(), totalPrice:cart.totalPrice});
 });
 
 //products creation and editing routes
