@@ -1,0 +1,629 @@
+*{
+	margin:0;
+	padding: 0;
+	border-sizing:border-box;
+}
+body{
+	font-family: roboto;
+
+}
+.row .my-text h4 {
+	padding-left:150px;
+}
+.comment-image{
+	height: 100px;
+	width:100px;
+	border-radius: 50px;
+}
+.my-sub{
+	height: 350px;
+	width:270px;
+	padding-top: 60px;
+	padding-right: 420px;
+	padding-left: 360px;
+	padding-bottom: 50px;
+}
+.my-container{
+	padding-top:15px ;
+	
+	padding-left: 17px;
+	padding-right: 17px;
+}
+.my-border{
+     border:1px solid white;
+	
+	
+	height:470px;
+}
+.text-centered{
+	padding-left: 200px;
+	padding-right:200px;
+}
+      /* The hero image */
+      .welcome-case{
+      	
+      	
+      	
+       
+      	position: relative;
+      	padding-top: 20px;
+      	font-size: 50px;
+      	font-weight: bold;
+      	width: 300px;
+        max-height: 450px !important;
+      	
+      	
+      	
+      	/*background-image: url(/images/family2.jpg);
+      	background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+      	background-image: url(/images/white1.png)
+       */
+      } 
+      .col-md-3 a {
+      	 font-family: "Open Sans", serif;
+      }
+      .newt{
+      	background-color: #63a4ff;
+         background-image:url(/img/uno.jpg);
+         position: absolute;
+         opacity: 0.5;
+         height: 100%;
+         width: 100;
+          background-size: cover;
+      }
+      .case-back{
+      	position: absolute;
+      	width:100%;
+      	height:100%;
+      	background-size: cover;
+      	 background-image:  linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);
+      	opacity:0.3;
+      }
+.hero-image {
+  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+  background-image: url("/images/hero11.jpg");
+
+  /* Set a specific height */
+  height: 500px;
+s
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.hero-image-1 {
+	/* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+	background-image: url("/img/SCREEN 2.png");
+  
+	/* Set a specific height */
+	height: 650px;
+  s
+	/* Position and center the image to scale nicely on all screens */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+  }
+  .hero-image-2 {
+	/* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+	background-image: url("/img/SCREEN 1.png");
+  
+	/* Set a specific height */
+	height: 650px;
+  
+	/* Position and center the image to scale nicely on all screens */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+  }
+  .hero-image-3 {
+	/* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+	background-image: url("/img/SCREEN 3.png");
+  
+	/* Set a specific height */
+	height: 650px;
+  s
+	/* Position and center the image to scale nicely on all screens */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+  }
+  .hero-image-4{
+	/* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+	background-image: url("/img/SCREEN 4.png");
+  
+	/* Set a specific height */
+	height: 650px;
+  s
+	/* Position and center the image to scale nicely on all screens */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+  }
+
+/* Place text in the middle of the image */
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.header-area {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    @include transition-duration(500ms);
+    border-bottom: 1px solid $border;
+
+    .top-header-area {
+        position: relative;
+        z-index: 1;
+        background-color: $heading;
+        width: 100%;
+        height: 50px;
+        
+        @media #{$breakpoint-xs} {
+            height: auto;
+            padding: 15px 0;
+        }
+
+        .top-header-content {
+            p {
+                margin-bottom: 0;
+                font-size: 14px;
+                color: $white;
+
+                @media #{$breakpoint-md} {
+                    font-size: 12px;
+                }
+                
+                @media #{$breakpoint-xs} {
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+
+    .cart-icon a {
+
+        &:focus,
+        &:hover {
+            color: $hover;
+        }
+    }
+}
+
+.classy-nav-container {
+    background-color: transparent;
+    padding: 0;
+
+    .classy-navbar {
+        @include transition-duration(500ms);
+        height: 100px;
+        padding: 0;
+
+        @media #{$breakpoint-md} {
+            height: 70px;
+        }
+
+        @media #{$breakpoint-xs} {
+            height: 70px;
+        }
+
+        .nav-brand {
+            @media #{$breakpoint-xs} {
+                max-width: 90px;
+                margin-right: 15px;
+            }
+        }
+.caro-frag{
+  padding-top:620px;height:0px;left:0px;position:absolute;z-index:80;display:non;
+	@media #{$breakpoint-sm}{
+	 bottom:0;left:50px;
+	 height:40px
+	}
+}
+        .classynav ul li {
+            a {
+                font-size: 16px;
+                text-transform: capitalize;
+                color: $heading;
+
+                @media #{$breakpoint-lg} {
+                    font-size: 14px;
+                }
+                
+                @media #{$breakpoint-md} {
+                    font-size: 14px;
+                }
+                
+                @media #{$breakpoint-xs} {
+                    font-size: 14px;
+                }
+
+                &:focus,
+                &:hover {
+                    color: $hover;
+                }
+            }
+
+            &.cn-dropdown-item,
+            &.megamenu-item {
+                ul li {
+                    a {
+                        font-size: 14px;
+                        text-transform: capitalize;
+                        height: 42px;
+                        line-height: 42px;
+                        padding: 0 30px;
+                        color: $heading;
+
+                        &:focus,
+                        &:hover {
+                            color: $hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.classynav ul li {
+    &.active {
+        a {
+            position: relative;
+            z-index: 1;
+
+            &::before {
+                width: 80%;
+                height: 2px;
+                background-color: $hover;
+                position: absolute;
+                bottom: 0;
+                left: 10%;
+                z-index: 1;
+                content: '';
+
+                @media #{$breakpoint-md} {
+                    display: none;
+                }
+
+                @media #{$breakpoint-xs} {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.classynav ul li.has-down > a::after,
+.classynav ul li.has-down.active > a::after,
+.classynav ul li.megamenu-item > a::after {
+    color: $heading;
+}
+
+.breakpoint-off .classynav ul li .dropdown,
+.breakpoint-off .classynav ul li .megamenu {
+    width: 210px;
+    @include box-shadow($box-shadow);
+    border-radius: 6px;
+}
+
+.breakpoint-off .classynav ul li .megamenu {
+    width: 100%;
+}
+.head{
+	background: url(/images/hero.jpg);
+	width:100%;
+	height: 600px;
+	background-size: cover;
+	position:relative;
+	overflow: hidden;
+	
+}
+.notation{
+	height: 250px;
+	width: 270px;
+	border-radius:100px;
+	z-index: 4;
+
+}
+.photo-grid-area{
+	background-image: url(/images/water3.png);
+	width:100%;
+	height: 800px;
+	background-size: cover;
+}
+.photo-grid-area img {
+	height: 250px;
+	width: 270px;
+	border-radius:50px;
+}
+.photo-grid{
+	padding: 150px 150px;
+}
+
+.notation-content{
+	margin:auto;
+	padding-top: 20px;
+	padding-left: 20px;
+}
+#myh2 #meh2{
+	font-weight: bold;
+}
+.lip{
+	padding-right: 200px;
+	padding-left:350px;
+}
+.liip{
+	padding-left: 200px;
+	padding-right:200px;
+}
+.lipi{
+	padding-left:400px;
+}
+.imn{
+	height:140px;
+	width:250px;
+}
+.my-welcome-content{
+	padding-left: 850px;
+	
+}
+.nink{
+	padding-bottom: 67px;
+	padding-top:40px;
+}
+.legos{
+	height: 80px;
+	width:120Px;
+}
+.head{
+	padding-left: 400px;
+}
+#head{
+	height: 70px;
+	width: 100px;
+}
+.head2{
+	padding-left: 420px;
+	
+	font-weight: bold;
+	padding-top: 30px;
+}
+h2{
+	font-weight: bold;
+}
+.head2 h1 {
+	color: rgb(0,147,230);
+	font-family:"Open-sans",sans-serif;
+	font-size: 3rem;
+	font-weight: bolder;
+}
+#ipsum{
+	
+	padding-left:400px;
+	padding-right:310px;
+	
+}
+.newone2{
+	height:300px;
+}
+#head{
+	margin-top: 100px;
+}
+#caro{
+    
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+#loo{
+	padding-top:160px;
+	padding-bottom:170px;
+}
+.search{
+	height:350px;
+}
+.con{
+	padding-top: 50px;
+	padding-left: 300px;
+	padding-right: 300px;
+	padding-bottom: 50px
+}
+.mink{
+	color: rgb(0,147,230);
+	font-weight: bold;
+}
+.mink h2{
+	font-weight: bold;
+}
+.sepro{
+	color:#0000ff;
+	padding-left: 560px;
+	padding-top: 30px
+	padding-bottom:60px;
+}
+.secap{
+	padding-left: 600px;
+	padding-top: 50px
+	padding-bottom;
+	font-family: arial;
+	font-style: italic;
+}
+
+.line{
+	padding-left: 250px;
+	padding-right: 250px;
+	width: 20px;
+	background: #0040ff
+} 
+.nid{
+	padding-top: 50px;
+}
+.nad{
+	padding-bottom: 50px;
+}
+.mygrid{
+	padding-top: 30px;
+	padding-left:300px; 
+	padding-right: 100px;
+}
+.myimg{
+	height: 150px;
+	width:150px;
+}
+.mid{
+	width:300px;
+	height:300px;
+}
+.move{
+	padding-left: 50px;
+}
+.whitespace{
+	height:50px;
+}
+.mywidth{
+	width:150px;
+}
+
+
+
+
+
+
+
+
+
+
+/* Product Layout */
+
+.product-filter {
+	display: flex;
+	padding: 30px 0;
+}
+
+.sort {
+	display: flex;
+	align-self: flex-end;
+}
+
+.collection-sort {
+ display: flex;
+	flex-direction: column;
+}
+
+.collection-sort:first-child {
+	padding-right: 20px;
+}
+
+label {
+	color: #666;
+	font-size: 10px;
+	font-weight: 500;
+	line-height: 2em;
+	text-transform: uppercase;
+}
+.cardo {
+	padding:200px 200px;
+}
+.carda{
+	padding-left: 430px;
+	padding-top:100px;
+	padding-bottom: 100px;
+}
+.products {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.product-card {
+	display: flex;
+	flex-direction: column;
+	
+	padding: 5%;
+	flex: 1 27%;
+	
+	
+}
+.spa img{
+	padding-bottom: 5px;
+	padding-right: 2px;
+}
+.product-image img {
+	width: 100%;
+}
+#cart-header{
+	padding-left: 500px;
+	padding-top: 60px;
+	padding-bottom: 0;
+}
+.product-info {
+	margin-top: auto;
+	padding-top: 20px;
+	text-align: center;
+}
+.product-cart{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+.product-cart p{
+	padding-top: 20px;
+}
+
+
+@media ( max-width: 920px ) {
+	
+	.product-card {
+		flex: 1 21%;
+	}
+	
+	.products .product-card:first-child, 
+	.products .product-card:nth-child(2) {
+		flex: 2 46%;
+	}
+	
+}
+
+@media ( max-width: 600px ) {
+	
+	.product-card {
+		flex: 1 46%;
+	}
+	
+}
+
+@media ( max-width: 480px ) {
+	
+	h1 {
+		margin-bottom: 20px;
+	}
+	
+	.product-filter {
+		flex-direction: column;
+	}
+	
+	.sort {
+		align-self: flex-start;
+	}
+	#ipsum{
+	padding:0;
+	
+	
+}
+	
+}
+
+
+.cur{
+	background: black;
+	heigt:650px;
+}
