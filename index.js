@@ -23,7 +23,7 @@ mongoose.connect(DBURL);
 
 
 app.set('view engine', 'ejs');
-app.use(express.static("public"));
+app.use(express.static("public1"));
 app.use(express.urlencoded())
 // Set up session
 app.use(methodOverride('_method'));
