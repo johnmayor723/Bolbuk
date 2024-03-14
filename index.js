@@ -32,6 +32,13 @@ app.use(
     secret: "mooohdhfhgfgfggggbb55544@@!@#$$FTtvsvv4435ffv",
     resave: false,
     saveUninitialized: true,
+    proxy: true,
+    name: "BolbukCookie",
+    cookie:{
+      secure:true,
+      httpOnly: false,
+      sameSite: 'none'
+    }
   })
 );
 app.use('/uploads', express.static(resolve(__dirname, 'uploads')));
