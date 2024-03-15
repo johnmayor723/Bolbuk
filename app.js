@@ -1,26 +1,33 @@
 const express = require('express')
 const session = require('express-session')
 const methodOverride = require('method-override')
-const { graphqlHTTP } = require('express-graphql');
-const { makeExecutableSchema } = require('@graphql-tools/schema');
-const { importSchema } = require('graphql-import');
-const { graphqlUploadExpress } = require('graphql-upload');
-const uploadRouter = require('./routes/upload.router');
+const multer = require('multer');
+const path = require('path')
+const mongoose = require('mongoose')
+const mongoStore = require('connect-mongo')
+const passport = require('passport');
+const LocalStrategy = require('passport-local')
 const { resolve } = require('path');
+
+const Product = require('./models/products')
+const Cart = require('./models/cart')
+const User = require('./models/users')
+
+
+
 
 
 const app = express()
+let port = process.env.port || 3000
 
-const {
-  indexrouter,
-  createrouter,
-  editrouter,
-  removerouter
-}   = require('./routes/product.router')
+const DBURL = "mongodb+srv://admin:majoje1582@cluster0.cqudxbr.mongodb.net/?retryWrites=true&w=majority"
+
+mongoose.connect(DBURL);
+
+
 
 app.set('view engine', 'ejs');
-//app.set('view', path.join(__dirnamme, '/views'))
-app.use(express.static("public"));
+app.use(express.static("public1"));
 app.use(express.urlencoded())
 // Set up session
 app.use(methodOverride('_method'));
@@ -29,51 +36,144 @@ app.use(
     secret: "mooohdhfhgfgfggggbb55544@@!@#$$FTtvsvv4435ffv",
     resave: false,
     saveUninitialized: true,
+    proxy: true,
+    name: "BolbukCookie",
+    cookie:{
+      secure:true,
+      httpOnly: false,
+      sameSite: 'none'
+    }
   })
 );
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-
-
-
-// Import GraphQL schema and resolvers
-const schema = makeExecutableSchema({
-  typeDefs: importSchema('./graphql/schema.graphql.js'),
-  resolvers: require('./graphql/resolvers.js'),
-});
-
-// Use the graphql-upload middleware
-app.use(graphqlUploadExpress());
-
-// GraphQL endpoint
-app.use('/graphql', graphqlHTTP({
-  schema,
-  graphiql: true,
-}));
-
-// Serve uploaded files
 app.use('/uploads', express.static(resolve(__dirname, 'uploads')));
 
-// Mount the file upload router
-app.use('/', uploadRouter);
-let port = process.env.port || 3000
+
+app.use(function(req, res, next){
+  res.locals.session = req.session
+  next()
+})
+
+
+
 
 app.get('/', (req, res)=>{
-    res.render('index')
+  Product.find()
+  .then(data=>{
+    console.log(data)
+    res.render('index', {data})
+  })
+    
 })
 
 
 
 app.get('/products', (req, res)=>{
-  res.render('products')
+  if(req.session){
+    var cart = req.session.cart
+    Product.find()
+    .then(data=>{
+      console.log(data)
+      res.render('products', {products:data, cart})
+    })
+  } else{
+  var cart = {
+    totalQty:0
+  }
+  var cart = req.session.cart
+  res.render('products', {products:data, cart})
+  }
 })
 
+app.post('/cart/:id', function (req, res, next) {
+  var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart.items : {});
+  
+  Product.findById(productId) 
+  .then(product=>{
+    cart.add(product, product.id);
+      req.session.cart = cart;
+      console.log(cart)
+      res.redirect('/');
+     
+  })
+      
+ 
+ 
+});
+
+app.get('/about', function (req, res){
+  res.render('contact')
+})
+
+app.get('/contact', function (req, res){
+  res.render('contact')
+})
+
+
+
+
+app.get('/cart', function (req, res, next) {
+  if (!req.session.cart) {
+      return res.render('shopping-cart', {products: null});
+  }
+  var cart = new Cart(req.session.cart.items);
+  //let products = cart.generateArray()
+  //let totalPrice = cart.totalPrice
+  //console.log(products)
+  res.render('shopping-cart', { products:cart.generateArray(), totalPrice:cart.totalPrice});
+});
 
 //products creation and editing routes
 
 app.get('/createproduct', (req, res) => {
   res.render('createproduct')
 })
+
+// Authentication
+
+app.get('/user/signup', (req, res)=>{
+  res.render('signup')
+})
+
+
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now()
+    cb(null, uniqueSuffix + file.originalname)
+  }
+})
+
+const upload = multer({ storage: storage })
+  
+
+  app.post('/createproduct', upload.single('image'), function(req, res){
+    var name = req.body.name
+    var image = req.file.filename;
+    //console.log(req.file)
+    var description = req.body.description
+    var price = req.body.price
+  
+    var newProduct = {name, image, description, price}
+    console.log(newProduct)
+    Product.create(newProduct)
+    .then(data=>{
+      console.log(data)
+     res.send(data)
+    })
+  })
+
+
 
 app.listen(port,  ()=>{
     console.log(`server started listening on ${port}` )

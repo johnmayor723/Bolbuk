@@ -27,7 +27,15 @@ app.use(express.static("public1"));
 app.use(express.urlencoded())
 // Set up session
 app.use(methodOverride('_method'));
-app.use(
+
+app.use(session({
+  secret: 'mysupersecret',
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
+
+/*app.use(
   session({
     secret: "mooohdhfhgfgfggggbb55544@@!@#$$FTtvsvv4435ffv",
     resave: false,
@@ -40,7 +48,7 @@ app.use(
       sameSite: 'none'
     }
   })
-);
+);*/
 app.use('/uploads', express.static(resolve(__dirname, 'uploads')));
 
 
