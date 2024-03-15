@@ -32,7 +32,7 @@ app.use(session({
   secret: 'mysupersecret',
   resave: false,
   saveUninitialized: false,
-  cookie: {secure: true},
+  
   store: MongoStore.create({ mongoUrl: DBURL })
 }));
 
