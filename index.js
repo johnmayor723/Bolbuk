@@ -4,7 +4,7 @@ const methodOverride = require('method-override')
 const multer = require('multer');
 const path = require('path')
 const mongoose = require('mongoose')
-const mongoStore = require('connect-mongo')
+const MongoStore = require('connect-mongo')
 const Product = require('./models/products')
 const Cart = require('./models/cart')
 
@@ -32,7 +32,7 @@ app.use(session({
   secret: 'mysupersecret',
   resave: false,
   saveUninitialized: false,
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
+  store: MongoStore.create({ mongoUrl: DBURL })
 }));
 
 /*app.use(
