@@ -7,7 +7,7 @@
     <meta name="keywords" content="Bolbook foods limited">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BOLBUK | Home</title>
+    <title>BOLBUK | Categories</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -211,7 +211,7 @@
                             <li><a href="/sauces">Sauces</a></li>
                             <li><a href="/vegetablesandfruits">Vegetables and Fruits</a></li>
                             <li><a href="/seasoning">Seasoning</a></li>
-                            <li><a href="#">Oatmeal</a></li>
+                            <li><a href="/drinks">Drinks</a></li>
                             <li><a href="#">Fresh Bananas</a></li>
                         </ul>
                     </div>
@@ -252,63 +252,22 @@
     </section>
     <!-- Hero Section End -->
 
-    <!-- Categories Section Begin -->
-    <section class="categories">
-        <div class="container">
-            <div class="row">
-                <div class="categories__slider owl-carousel">
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/palmoil.jpg">
-                            <h5><a href="#">Palm Oil- 4Ltr</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/bournvita.jpg">
-                            <h5><a href="#">Bournvita -500g</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/peakmilk.jpg">
-                            <h5><a href="#">Peak Milk- 400g</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/garri.jpg">
-                            <h5><a href="#">Tropical sun Garri - 1.5kg</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="img/plantainflour.jpg">
-                            <h5><a href="#">Tropical Sun Plantain Flour 1.5kg</a></h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Categories Section End -->
+    
 
     <!-- Featured Section Begin -->
     <section class="featured spad">
         <div class="container">
+            <% data.forEach(function(product){ %>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Featured Product</h2>
+                        <h2>Categories/<%=product.category%></h2>
                     </div>
-                    <div class="featured__controls">
-                        <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".oranges">Oranges</li>
-                            <li data-filter=".fresh-meat">Fresh Meat</li>
-                            <li data-filter=".vegetables">Vegetables</li>
-                            <li data-filter=".fastfood">Fastfood</li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </div>
             <div class="row featured__filter">
-                <% data.forEach(function(product){ %>
+               
                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="uploads/<%= product.image%>">

@@ -202,15 +202,15 @@
                             <span>All departments</span>
                         </div>
                         <ul>
-                            <li><a href="/snacks">Snacks</a></li>
-                            <li><a href="/oil">oil</a></li>
-                            <li><a href="/flour">Flour Products</a></li>
-                            <li><a href="/beverages">Beverages</a></li>
-                            <li><a href="/dairy">Dairy Products</a></li>
-                            <li><a href="/paste">Paste and Puree</a></li>
-                            <li><a href="/sauces">Sauces</a></li>
-                            <li><a href="/vegetablesandfruits">Vegetables and Fruits</a></li>
-                            <li><a href="/seasoning">Seasoning</a></li>
+                            <li><a href="#">Fresh Meat</a></li>
+                            <li><a href="#">Vegetables</a></li>
+                            <li><a href="#">Fruit & Nut Gifts</a></li>
+                            <li><a href="#">Fresh Berries</a></li>
+                            <li><a href="#">Ocean Foods</a></li>
+                            <li><a href="#">Butter & Eggs</a></li>
+                            <li><a href="#">Fastfood</a></li>
+                            <li><a href="#">Fresh Onion</a></li>
+                            <li><a href="#">Papayaya & Crisps</a></li>
                             <li><a href="#">Oatmeal</a></li>
                             <li><a href="#">Fresh Bananas</a></li>
                         </ul>
@@ -313,13 +313,17 @@
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="uploads/<%= product.image%>">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                                 <li>
-                                    <form action="/cart/<%=product._id%>" method="post">
-                                       <button class="btn btn-info">Add to cart</button>
-                                  </form>
+                                    <a href="/product/<%=product._id%>" 
+                                        class="btn btn-info">edit
+                                  </a>
                                </li>
+                               <li>
+                                <form action="/product/<%=product._id%>?_method=DELETE" method="post">
+                                   <button class="btn btn-info">delete</button>
+                              </form>
+                           </li>
+                               
                             </ul>
                             
                         </div>

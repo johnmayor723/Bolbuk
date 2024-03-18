@@ -70,6 +70,15 @@ app.get('/', (req, res)=>{
     
 })
 
+app.get('/admin', (req, res)=>{
+  Product.find()
+  .then(data=>{
+    console.log(data)
+    res.render('admin', {data})
+  })
+    
+})
+
 
 
 app.get('/products', (req, res)=>{
@@ -106,6 +115,17 @@ app.post('/cart/:id', function (req, res, next) {
  
 });
 
+
+app.delete('/product/:id', async (req, res) => {
+  await Product.findOneAndDelete(req.params.id)
+   console.log('hi')
+  Product.find()
+    .then(data=>{
+      console.log(data)
+      res.redirect('/admin');
+    })
+})
+
 app.get('/about', function (req, res){
   res.render('contact')
 })
@@ -113,6 +133,89 @@ app.get('/about', function (req, res){
 app.get('/contact', function (req, res){
   res.render('contact')
 })
+
+app.get('/snacks', (req, res)=> {
+  Product.find()
+  .then(data=>{
+    const snacks = data.filter(product => product.category === 'snacks');
+    console.log(snacks)
+    res.render('snacks', {data:snacks})
+  })
+})
+app.get('/oil', (req, res)=> {
+  Product.find()
+  .then(data=>{
+    const oil = data.filter(product => product.category === 'oil');
+    //console.log(snacks)
+    res.render('snacks', {data:oil})
+  })
+})
+app.get('/flour', (req, res)=> {
+  Product.find()
+  .then(data=>{
+    const oil = data.filter(product => product.category === 'Flour Products');
+   // console.log(snacks)
+    res.render('flour', {data:oil})
+  })
+})
+app.get('/beverages', (req, res)=> {
+  Product.find()
+  .then(data=>{
+    const oil = data.filter(product => product.category === 'Beverages');
+   // console.log(snacks)
+    res.render('flour', {data:oil})
+  })
+})
+app.get('/dairy', (req, res)=> {
+  Product.find()
+  .then(data=>{
+    const oil = data.filter(product => product.category === 'dairy');
+   // console.log(snacks)
+    res.render('flour', {data:oil})
+  })
+})
+app.get('/paste', (req, res)=> {
+  Product.find()
+  .then(data=>{
+    const oil = data.filter(product => product.category === 'Paste and puree');
+   // console.log(snacks)
+    res.render('flour', {data:oil})
+  })
+})
+app.get('/sauces', (req, res)=> {
+  Product.find()
+  .then(data=>{
+    const oil = data.filter(product => product.category === 'Sauces');
+   // console.log(snacks)
+    res.render('flour', {data:oil})
+  })
+})
+app.get('/vegetablesandfruits', (req, res)=> {
+  Product.find()
+  .then(data=>{
+    const oil = data.filter(product => product.category === 'Vegetables and Fruits');
+   // console.log(snacks)
+    res.render('flour', {data:oil})
+  })
+})
+app.get('/seasoning', (req, res)=> {
+  Product.find()
+  .then(data=>{
+    const oil = data.filter(product => product.category === 'Seasoning');
+   // console.log(snacks)
+    res.render('flour', {data:oil})
+  })
+})
+app.get('/drinks', (req, res)=> {
+  Product.find()
+  .then(data=>{
+    const oil = data.filter(product => product.category === 'Drinks');
+   // console.log(snacks)
+    res.render('flour', {data:oil})
+  })
+})
+
+
 
 
 
@@ -155,10 +258,10 @@ const upload = multer({ storage: storage })
     var name = req.body.name
     var image = req.file.filename;
     //console.log(req.file)
-    var description = req.body.description
+    var category = req.body.category
     var price = req.body.price
   
-    var newProduct = {name, image, description, price}
+    var newProduct = {name, image, category, price}
     console.log(newProduct)
     Product.create(newProduct)
     .then(data=>{
