@@ -2,17 +2,15 @@
 <html lang="zxx">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" content="Ogani, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
     <title>BOLBUK | CART</title>
+    <link rel="icon" href="/img/logi.png" type="image">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
+
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -24,7 +22,11 @@
 </head>
 
 <body>
-    
+    <script>
+        $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+    </script>
 
      <!-- Page Preloder -->
     
@@ -141,7 +143,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="/"><h2>BOLBUKFOOD</h2></a>
+                        <a href="/"><img height="120px" src="/img/logi.png"></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -285,7 +287,7 @@
                                 <tr>
 
                                     <td class="shoping__cart__item">
-                                        <img src="uploads/<%=products.item.image%>" alt="">
+                                        <img height="50px" src="uploads/<%=products.item.image%>" alt="">
                                         <h5><%=products.item.name%></h5>
                                     </td>
                                     <td class="shoping__cart__price">
@@ -337,7 +339,7 @@
                             <li>Subtotal <span>  $<%=totalPrice%>.00</span></li>
                             <li>Total <span>  $<%=totalPrice%>.00</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="/payments" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>
@@ -351,7 +353,10 @@
 		</div>
 	<% } %>
     <!-- Shoping Cart Section End -->
+  <!-- Button trigger modal -->
 
+  
+  
     <!-- Footer Section Begin -->
     <footer class="footer spad">
         <div class="container">
@@ -429,6 +434,7 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+  
 
 
 </body>

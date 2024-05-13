@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    
+    <title>BOLBUK | CART</title>
+    <link rel="icon" href="/img/logi.png" type="image">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <style>
+        .card{
+    max-width: 1000px;
+    margin: 2vh;
+}
+.card-top{
+    padding: 0.7rem 5rem;
+}
+.card-top a{
+    float: left;
+    margin-top: 0.7rem;
+}
+#logo{
+    font-family: 'Dancing Script';
+    font-weight: bold;
+    font-size: 1.6rem;
+}
+.card-body{
+    padding: 0 5rem 5rem 5rem;
+    background-image: url("https://i.imgur.com/4bg1e6u.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+@media(max-width:768px){
+    .card-body{
+        padding: 0 1rem 1rem 1rem;
+        background-image: url("https://i.imgur.com/4bg1e6u.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }  
+    .card-top{
+        padding: 0.7rem 1rem;
+    }
+}
+.row{
+    margin: 0;
+}
+.upper{
+    padding: 1rem 0;
+    justify-content: space-evenly;
+}
+#three{
+    border-radius: 1rem;
+        width: 22px;
+    height: 22px;
+    margin-right:3px;
+    border: 1px solid blue;
+    text-align: center;
+    display: inline-block;
+}
+#payment{
+    margin:0;
+    color: blue;
+}
+.icons{
+    margin-left: auto;
+}
+form span{
+    color: rgb(179, 179, 179);
+}
+form{
+    padding: 2vh 0;
+}
+input{
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+}
+input:focus::-webkit-input-placeholder
+{
+      color:transparent;
+}
+.header{
+    font-size: 1.5rem;
+}
+.left{
+    background-color: #ffffff;
+    padding: 2vh;   
+}
+.left img{
+    width: 2rem;
+}
+.left .col-4{
+    padding-left: 0;
+}
+.right .item{
+    padding: 0.3rem 0;
+}
+.right{
+    background-color: #ffffff;
+    padding: 2vh;
+}
+.col-8{
+    padding: 0 1vh;
+}
+.lower{
+    line-height: 2;
+}
+.btn{
+    background-color: rgb(23, 4, 189);
+    border-color: rgb(23, 4, 189);
+    color: white;
+    width: 100%;
+    font-size: 0.7rem;
+    margin: 4vh 0 1.5vh 0;
+    padding: 1.5vh;
+    border-radius: 0;
+}
+.btn:focus{
+    box-shadow: none;
+    outline: none;
+    box-shadow: none;
+    color: white;
+    -webkit-box-shadow: none;
+    -webkit-user-select: none;
+    transition: none; 
+}
+.btn:hover{
+    color: white;
+}
+a{
+    color: black;
+}
+a:hover{
+    color: black;
+    text-decoration: none;
+}
+input[type=checkbox]{
+    width: unset;
+    margin-bottom: unset;
+}
+#cvv{
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.575) , rgba(255, 255, 255, 0.541)), url("https://img.icons8.com/material-outlined/24/000000/help.png");
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: center;
+} 
+#cvv:hover{
+
+}
+    </style>
+</head>
+
+<body>
+    <script src="js/jquery-3.3.1.min.js"></script>
+   
+  
+     <!-- Page Preloder -->
+    
+
+    <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+            <a href="#"><h3>BOLBUKFOOD</h3></a>
+        </div>
+        
+        <% if (!session.cart) { %>
+            <div class="humberger__menu__cart">
+                <ul>
+                   
+                    <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
+                </ul>
+                <div class="header__cart__price">item: <span></span></div>
+            </div>
+            <%} else { %>
+                <div class="humberger__menu__cart">
+                    <ul>
+                        
+                        <li style="list-style:none"><a href="#"><i class="fa fa-shopping-bag"></i> <span><%=session.cart.totalQty%></span></a></li>
+                    </ul>
+                    <div class="header__cart__price">item: <span></span></div>
+                </div>
+        <% } %>
+        <div class="humberger__menu__widget">
+            <div class="header__top__right__language">
+                <img src="img/language.png" alt="">
+                <div>English</div>
+                <span class="arrow_carrot-down"></span>
+                <ul>
+                    <li><a href="#">Spanis</a></li>
+                    <li><a href="#">English</a></li>
+                </ul>
+            </div>
+            <div class="header__top__right__auth">
+                <a href="#"><i class="fa fa-user"></i> Login</a>
+            </div>
+        </div>
+        <nav class="humberger__menu__nav mobile-menu">
+            <ul>
+                <li class="active"><a href="./index.html">Home</a></li>
+                <li><a href="./shop-grid.html">Shop</a></li>
+                <li><a href="#">Pages</a>
+                    <ul class="header__menu__dropdown">
+                        <li><a href="/products">Products</a></li>
+                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                        <li><a href="./checkout.html">Check Out</a></li>
+                        <li><a href="./blog-details.html">Blog Details</a></li>
+                    </ul>
+                </li>
+                <li><a href="./blog.html">Blog</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="header__top__right__social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+        </div>
+        <div class="humberger__menu__contact">
+            <ul>
+                <li><i class="fa fa-envelope"></i>info@bolbukfoods.com</li>
+                <li>Free Shipping for all Order of $99</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Humberger End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__left">
+                            <ul>
+                                <li><i class="fa fa-envelope"></i>info@bolbukfoods.com</li>
+                                <li>Free Shipping for all Order of $99</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__right">
+                            <div class="header__top__right__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                            </div>
+                            <div class="header__top__right__language">
+                                <img src="img/language.png" alt="">
+                                <div>English</div>
+                                <span class="arrow_carrot-down"></span>
+                                <ul>
+                                    <li><a href="#">Spanis</a></li>
+                                    <li><a href="#">English</a></li>
+                                </ul>
+                            </div>
+                            <div class="header__top__right__auth">
+                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a href="/"><img height="120px" src="/img/logi.png"></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active"><a href="./index.html">Home</a></li>
+                            <li><a href="/About">About</a></li>
+                            <li><a href="#">Pages</a>
+                                <ul class="header__menu__dropdown">
+                                    <li><a href="./shop-details.html">Shop Details</a></li>
+                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                                    <li><a href="./checkout.html">Check Out</a></li>
+                                    <li><a href="./blog-details.html">Blog Details</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/">Blog</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                
+  
+  <div class="container card">
+    <div class="card-top border-bottom text-center">
+         <a href="/"> Back to shop</a>
+        <span id="logo"></span>
+    </div>
+    <div class="card-body">
+        <div class="row upper">
+            <span><i class="fa fa-check-circle-o"></i> Shopping bag</span>
+            <span><i class="fa fa-check-circle-o"></i> Order details</span>
+            <span id="payment"><span id="three">3</span>Payment</span>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="left border">
+                    <div class="row">
+                        <span class="header">Payment</span>
+                        <div class="icons">
+                            <img src="https://img.icons8.com/color/48/000000/visa.png"/>
+                            <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png"/>
+                            <img src="https://img.icons8.com/color/48/000000/maestro.png"/>
+                        </div>
+                    </div>
+              
+                        
+                    
+                    <form id="checkout-form" action="/charge" method="post">
+                        <span>Cardholder's name:</span>
+                        <input id="card-name" placeholder="Enter Your name" name="name">
+                        <span>Shipping Address:</span>
+                        <input placeholder="Enter Your Address" name="address">
+                        <span>Card Number:</span>
+                        <input id="card-number" placeholder="0125 6780 4567 9909" name="cardnumber">
+                        <div class="row">
+                            <div class="col-4"><span>Expiry year:</span>
+                                <input id="card-expiry-year" placeholder="YY">
+                            </div>
+                            <div class="col-4"><span>Expiry month:</span>
+                                <input id="card-expiry-month" placeholder="MM">
+                            </div>
+                            <div class="col-4"><span>CVV:</span>
+                                <input id="card-cvc" placeholder="cvv">
+                            </div>
+                        </div>
+                        <input type="checkbox" id="save_card" class="align-left">
+                        <label for="save_card">Save card details to wallet</label>
+                        <button type='submit' class="btn">Place order</button>  
+                    </form>
+                </div>                        
+            </div>
+            <div class="col-md-5">
+                <div class="right border">
+                    <div class="header">Order Summary</div>
+                    <p>2 items</p>
+                    <% products.forEach(function(products){ %>
+                        
+                        <div class="row item">
+                           
+                       
+                            <div class="col-4 align-self-center"><img class="img-fluid" src="uploads/<%=products.item.image%>"></div>
+                            <div class="col-8"><%=products.qty%>
+                                <div class="row"><b>$ <%=products.item.price%></b></div>
+                                <div class="row text-muted"><%=products.item.name%></div>
+                                <div class="row"><%=products.qty%></div>
+                            </div>
+                        </div>
+
+                        <% }); %>
+                   
+                    <hr>
+                    <div class="row lower">
+                        <div class="col text-left">Subtotal</div>
+                        <div class="col text-right">$<%=totalPrice%>.00</div>
+                    </div>
+                    <div class="row lower">
+                        <div class="col text-left">Delivery</div>
+                        <div class="col text-right">Free</div>
+                    </div>
+                    <div class="row lower">
+                        <div class="col text-left"><b>Total to pay</b></div>
+                        <div class="col text-right"><b><%=totalPrice%>.00</b></div>
+                    </div>
+                    <div class="row lower">
+                        <div class="col text-left"><a href="#"><u>Add promo code</u></a></div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+ 
+</div>
+</div>
+    <!-- Footer Section Begin -->
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__about__logo">
+                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        </div>
+                        <ul>
+                            <li>Address: 60-49 Road 11378 New York</li>
+                            <li>Phone: +65 11.188.888</li>
+                            <li>Email: hello@colorlib.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                    <div class="footer__widget">
+                        <h6>Useful Links</h6>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">About Our Shop</a></li>
+                            <li><a href="#">Secure Shopping</a></li>
+                            <li><a href="#">Delivery infomation</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Our Sitemap</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#">Who We Are</a></li>
+                            <li><a href="#">Our Services</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Innovation</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__widget">
+                        <h6>Join Our Newsletter Now</h6>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="#">
+                            <input type="text" placeholder="Enter your mail">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__widget__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__copyright">
+                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |  <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://easyhostnet.com" target="_blank">EASY\</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+                        <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+   
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+   
+      
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        
+     Stripe.setPublishableKey('pk_live_51P8IdV00gH7PcBWdmZmzWNWJNLM7SbYfQAmjtZTvrcEfqNfND15VQIXLkHjo6DiZseOlp8SVda4G2xM1migII5zO00aImL2DVw');
+
+    var $form = $('#checkout-form');
+
+    $form.submit(function (event) {
+    // $('#charge-error').addClass('hidden');
+        $form.find('button').prop('disabled', true);
+        Stripe.card.createToken({
+            number: $('#card-number').val(),
+            cvc: $('#card-cvc').val(),
+            exp_month: $('#card-expiry-month').val(),
+            exp_year: $('#card-expiry-year').val(),
+            name: $('#card-name').val()
+        }, stripeResponseHandler);
+        return false;
+    });
+
+    function stripeResponseHandler(status, response) {
+    if (response.error) { // Problem!
+
+        // Show the errors on the form
+       // $('#charge-error').text(response.error.message);
+       let error = response.error.message 
+       // $('#charge-error').removeClass('hidden');
+        const errDiv = document.createElement('div');
+        errDiv.classList.add('alert', "alert-danger", 'error-message')
+        errDiv.textContent = error;
+        form.parentNode.insertBefore(errDiv, form)
+        $form.find('button').prop('disabled', false); // Re-enable submission
+       
+
+    } else { // Token was created!
+
+        // Get the token ID:
+        var token = response.id;
+
+        // Insert the token into the form so it gets submitted to the server:
+        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        alert(token)
+        // Submit the form:
+        //$form.get(0).submit();
+
+    }
+}
+      </script>
+  
+
+
+</body>
+
+</html>

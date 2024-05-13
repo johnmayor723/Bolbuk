@@ -2,11 +2,13 @@ const express = require('express')
 const session = require('express-session')
 const methodOverride = require('method-override')
 const multer = require('multer');
+//const  stripe = require('stripe');
 const path = require('path')
 const mongoose = require('mongoose')
 const MongoStore = require('connect-mongo')
 const Product = require('./models/products')
 const Cart = require('./models/cart')
+const Order = require('./models/order')
 
 
 
@@ -68,6 +70,48 @@ app.get('/', (req, res)=>{
     res.render('index', {data})
   })
     
+})
+app.get('/show', (req, res)=>{
+  Product.find()
+  .then(data=>{
+    console.log(data)
+    res.render('showall', {data})
+  })
+    
+})
+
+app.get("/products/:id", function(req, res){
+ 
+  var id = req.params.id
+  
+  Product.findById({_id:id})
+  .then(data=>{
+   
+   res.render('edit', {data})
+  })
+
+})
+app.put('/products/:id', async (req, res) => {
+  const {id} = req.params;
+  
+  let data = req.body.price
+  
+  console.log(data)
+  /*await Product.findByIdAndUpdate(id, {...data})
+  Product.find()
+  .then(data=>{
+    res.render('showall', {data});
+  })*/
+  
+
+})
+app.delete('/products/:id', async (req, res) => {
+  await Product.findOneAndDelete(req.params.id)
+
+  Product.find()
+    .then(data=>{
+      res.render('showall', {data});
+    })
 })
 
 app.get('/admin', (req, res)=>{
@@ -230,6 +274,16 @@ app.get('/cart', function (req, res, next) {
   //console.log(products)
   res.render('shopping-cart', { products:cart.generateArray(), totalPrice:cart.totalPrice});
 });
+app.get('/payments', function (req, res, next) {
+  if (!req.session.cart) {
+      return res.render('shopping-cart', {products: null});
+  }
+  var cart = new Cart(req.session.cart.items);
+  //let products = cart.generateArray()
+  //let totalPrice = cart.totalPrice
+  //console.log(products)
+  res.render('payments', { products:cart.generateArray(), totalPrice:cart.totalPrice});
+});
 
 //products creation and editing routes
 
@@ -269,6 +323,53 @@ const upload = multer({ storage: storage })
      res.send(data)
     })
   })
+
+app.get('/checkout', function(req, res){
+  res.render('payment')
+} )
+// payments integration/////////////////////////////////////////////////////////
+
+
+//const stripe = await loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+let secret = "pk_test_51P8IdV00gH7PcBWd8U0sdblVIa4uXmjSmgKkvLOurvDDwandn13EyiUixkTa7WbZeYfbe6ktSx43aOVv3IWMzWEP00qsPoODKu"
+//const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(secret);
+
+app.post('/charge',  function(req, res, next) {
+  if (!req.session.cart) {
+      return res.redirect('/products');
+  }
+  var cart = new Cart(req.session.cart);
+  
+  var stripe = require("stripe")(
+      "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"
+  );
+
+  stripe.charges.create({
+      amount: cart.totalPrice * 100,
+      currency: "gbp",
+      source: req.body.stripeToken, // obtained with Stripe.js
+      description: "Test Charge"
+  }, function(err, charge) {
+      if (err) {
+          req.flash('error', err.message);
+          return res.redirect('/checkout');
+      }
+      var order = new Order({
+         // user: req.user
+          cart: cart,
+          address: req.body.address,
+          name: req.body.name,
+          paymentId: charge.id
+      });
+      order.save(function(err, result) {
+          req.flash('success', 'Successfully bought product!');
+          req.session.cart = null;
+          res.redirect('/');
+      });
+  }); 
+});
+
 
 
 
