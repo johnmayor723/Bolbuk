@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    
+    <title>BOLBUK | CART</title>
+    <link rel="icon" href="/img/logi.png" type="image">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' type='text/css'
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+<body>
+        <h2>Demo JavaScript in Head</h2>
+        
+        <p id="demo">A Paragraph</p>
+        <button type="button" onclick="myFunction()">Try it</button>
+        <form action="/charge" method="post" id="payment-form">
+            <div class="form-row">
+              <label for="card-element">
+                Credit or debit card
+              </label>
+              <div id="card-element">
+                <!-- A Stripe Element will be inserted here. -->
+              </div>
+          
+              <!-- Used to display Element errors. -->
+              <div id="card-errors" role="alert"></div>
+            </div>
+          
+            <button>Submit Payment</button>
+          </form>
+        </body>
+     <script>
+        function myFunction() {
+        document.getElementById("demo").innerHTML = "Paragraph changed.";
+      }
+     </script>
+     <script src="https://js.stripe.com/v3/"></script>
+    
+     <script>
+       const stripe = Stripe('pk_live_51P8IdV00gH7PcBWdmZmzWNWJNLM7SbYfQAmjtZTvrcEfqNfND15VQIXLkHjo6DiZseOlp8SVda4G2xM1migII5zO00aImL2DVw');
+     
+       const elements = stripe.elements();
+       const cardElement = elements.create('card');
+     
+       cardElement.mount('#card-element');
+     
+       const form = document.getElementById('payment-form');
+       form.addEventListener('submit', async (event) => {
+         event.preventDefault();
+     
+         const { token, error } = await stripe.createToken(cardElement);
+     
+         if (error) {
+           const errorElement = document.getElementById('card-errors');
+           errorElement.textContent = error.message;
+         } else {
+           const hiddenInput = document.createElement('input');
+           hiddenInput.setAttribute('type', 'hidden');
+           hiddenInput.setAttribute('name', 'token');
+           hiddenInput.setAttribute('value', token.id);
+     
+           form.appendChild(hiddenInput);
+           form.submit();
+         }
+       });
+     </script>
+</html>

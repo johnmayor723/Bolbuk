@@ -61,7 +61,9 @@ app.use(function(req, res, next){
 })
 
 
-
+app.get('/demo', function(req, res){
+  res.render('paymentdemo')
+})
 
 app.get('/', (req, res)=>{
   Product.find()
@@ -348,12 +350,12 @@ app.post('/charge',  function(req, res, next) {
   stripe.charges.create({
       amount: cart.totalPrice * 100,
       currency: "gbp",
-      source: req.body.stripeToken, // obtained with Stripe.js
+      source: req.body.token, // obtained with Stripe.js
       description: "Test Charge"
   }, function(err, charge) {
       if (err) {
           req.flash('error', err.message);
-          return res.redirect('/checkout');
+          return res.redirect('/charge');
       }
       var order = new Order({
          // user: req.user
