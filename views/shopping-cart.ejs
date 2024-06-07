@@ -20,22 +20,15 @@
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
-
 <body>
-    <script>
-        $('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
-    </script>
-
-     <!-- Page Preloder -->
+    <!-- Page Preloder -->
     
 
     <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><h3>BOLBUKFOOD</h3></a>
+            <a href="#"><img height="50px" src="/img/log.png"></a>
         </div>
         
         <% if (!session.cart) { %>
@@ -94,8 +87,8 @@
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                <li>Free Shipping for all Order of $99</li>
+                <li><i class="fa fa-envelope"></i> info@bolbukfoods.com</li>
+                <li>Discount Up To 10% for New Customers</li>
             </ul>
         </div>
     </div>
@@ -109,8 +102,8 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                                <li>Free Shipping for all Order of $99</li>
+                                <li><i class="fa fa-envelope"></i>info@bolbukfoods.com</li>
+                                <li>Discount Up To 10% for New Customers</li>
                             </ul>
                         </div>
                     </div>
@@ -183,7 +176,7 @@
                                      
 
                                 </ul>
-                                <div class="header__cart__price">item: <span>$150.00</span></div>
+                                <div class="header__cart__price">item: <span></span></div>
                             </div>
                     <% } %>
                 </div>
@@ -193,8 +186,10 @@
             </div>
         </div>
     </header>
+    <!-- Header Section End -->
+
     <!-- Hero Section Begin -->
-    <section class="hero hero-normal">
+    <section class="hero">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -204,15 +199,15 @@
                             <span>All departments</span>
                         </div>
                         <ul>
-                            <li><a href="#">Fresh Meat</a></li>
-                            <li><a href="#">Vegetables</a></li>
-                            <li><a href="#">Fruit & Nut Gifts</a></li>
-                            <li><a href="#">Fresh Berries</a></li>
-                            <li><a href="#">Ocean Foods</a></li>
-                            <li><a href="#">Butter & Eggs</a></li>
-                            <li><a href="#">Fastfood</a></li>
-                            <li><a href="#">Fresh Onion</a></li>
-                            <li><a href="#">Papayaya & Crisps</a></li>
+                            <li><a href="/snacks">Snacks</a></li>
+                            <li><a href="/oil">oil</a></li>
+                            <li><a href="/flour">Flour Products</a></li>
+                            <li><a href="/beverages">Beverages</a></li>
+                            <li><a href="/dairy">Dairy Products</a></li>
+                            <li><a href="/paste">Paste and Puree</a></li>
+                            <li><a href="/sauces">Sauces</a></li>
+                            <li><a href="/vegetablesandfruits">Vegetables and Fruits</a></li>
+                            <li><a href="/seasoning">Seasoning</a></li>
                             <li><a href="#">Oatmeal</a></li>
                             <li><a href="#">Fresh Bananas</a></li>
                         </ul>
