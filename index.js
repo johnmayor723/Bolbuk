@@ -2,7 +2,6 @@ const express = require('express')
 const session = require('express-session')
 const methodOverride = require('method-override')
 const multer = require('multer');
-//const  stripe = require('stripe');
 const path = require('path')
 const mongoose = require('mongoose')
 const MongoStore = require('connect-mongo')
@@ -38,20 +37,7 @@ app.use(session({
   store: MongoStore.create({ mongoUrl: DBURL })
 }));
 
-/*app.use(
-  session({
-    secret: "mooohdhfhgfgfggggbb55544@@!@#$$FTtvsvv4435ffv",
-    resave: false,
-    saveUninitialized: true,
-    proxy: true,
-    name: "BolbukCookie",
-    cookie:{
-      secure:true,
-      httpOnly: false,
-      sameSite: 'none'
-    }
-  })
-);*/
+
 app.use('/uploads', express.static(resolve(__dirname, 'uploads')));
 
 
@@ -376,5 +362,5 @@ app.post('/charge',  function(req, res, next) {
 
 
 app.listen(port,  ()=>{
-    console.log(`server started listening on ${port}` )
+    console.log(`server started listening on port ${port}` )
 })
