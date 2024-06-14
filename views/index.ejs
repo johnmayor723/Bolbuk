@@ -146,17 +146,17 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
+                            <li class="active"><a href="/">Home</a></li>
                             <li><a href="/About">About</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
+                                   
+                                    <li><a href="/cart">Shoping Cart</a></li>
+                                    
+                                   
                                 </ul>
                             </li>
-                            <li><a href="/">Blog</a></li>
+                            <li><a href="#">Blog</a></li>
                             <li><a href="/contact">Contact</a></li>
                         </ul>
                     </nav>
@@ -311,7 +311,7 @@
             <div class="row featured__filter">
                 <% data.forEach(function(product){ %>
                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                    <div class="featured__item">
+                    <div style="" class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="uploads/<%= product.image%>">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -365,62 +365,35 @@
                         <h4>Latest Products</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                
+                                <% sauces.forEach(function(product){ %>
+                                    <a href="/sauces" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="uploads/<%= product.image%>" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6><%= product.name%></h6>
+                                            <span>£<%= product.price%></span>
+                                        </div>
+                                    </a>
+                                    <% }); %> 
+                               
+                               
                             </div>
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                              
+                                <% drinks.forEach(function(product){ %>
+                                    <a href="drinks" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="uploads/<%= product.image%>" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6><%= product.name%></h6>
+                                            <span>£<%= product.price%></span>
+                                        </div>
+                                    </a>
+                                    <% }); %>   
+                                
                             </div>
                         </div>
                     </div>
@@ -430,62 +403,33 @@
                         <h4>Top Rated Products</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                               
+                                <% dairy.forEach(function(product){ %>
+                                    <a href="/dairy" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="uploads/<%= product.image%>" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6><%= product.name%></h6>
+                                            <span>£<%= product.price%></span>
+                                        </div>
+                                    </a>
+                                    <% }); %>
+                                
                             </div>
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                  
+                                <% beverages.forEach(function(product){ %>
+                                    <a href="/beverages" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="uploads/<%= product.image%>" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6><%= product.name%></h6>
+                                            <span>£<%= product.price%></span>
+                                        </div>
+                                    </a>
+                                    <% }); %>
                             </div>
                         </div>
                     </div>
@@ -495,62 +439,34 @@
                         <h4>Review Products</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                
+                                <% snacks.forEach(function(product){ %>
+                                    <a href="/snacks" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="uploads/<%= product.image%>" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6><%= product.name%></h6>
+                                            <span>£<%= product.price%></span>
+                                        </div>
+                                    </a>
+                                    <% }); %>
                             </div>
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Vegetables</h6>
-                                        <span></span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Vegetables</h6>
-                                        <span></span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Vegetables</h6>
-                                        <span></span>
-                                    </div>
-                                </a>
+                                <% oil.forEach(function(product){ %>
+                                    <a href="/oil" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="uploads/<%= product.image%>" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6><%= product.name%></h6>
+                                            <span>£<%= product.price%></span>
+                                        </div>
+                                    </a>
+                                    <% }); %>
+                               
+                               
+                               
                             </div>
                         </div>
                     </div>
@@ -572,7 +488,7 @@
                         <ul>
                             <li>Address: 227d Ormskirk Road Wigan WN5 9DN</li>
                             <li>Phone: +447863999688</li>
-                            <li>Email: info@bolbukfood.com</li>
+                            <li>Email: Address: info@bolbukfood.com</li>
                         </ul>
                     </div>
                 </div>
