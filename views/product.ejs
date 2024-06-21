@@ -259,12 +259,12 @@
             <div class="row">
                 <div class="categories__slider owl-carousel">
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="https://firebasestorage.googleapis.com/v0/b/bolbuk.appspot.com/o/1710789015014palmoil.png?alt=media&token=d40584b5-c00f-462e-b977-d8f0a29ebc87">
+                        <div class="categories__item set-bg" data-setbg="img/palmoil.jpg">
                             <h5><a href="#">Palm Oil</a></h5>
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="https://firebasestorage.googleapis.com/v0/b/bolbuk.appspot.com/o/1710790944202bournvita.png?alt=media&token=a1d5b897-a4db-4634-8e37-f2ac05a42eb3">
+                        <div class="categories__item set-bg" data-setbg="img/bournvita.jpg">
                             <h5><a href="#">Bournvita</a></h5>
                         </div>
                     </div>
@@ -309,29 +309,29 @@
                 </div>
             </div>
             <div class="row featured__filter">
-                <% data.forEach(function(product){ %>
+               
                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" style="background:hsla(0, 53%, 93%, 0.842)">
                     <div  class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg=<%=product.image%>>
+                        <div class="featured__item__pic set-bg" data-setbg="uploads/<%= data.image%>">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                                 <li>
-                                    <form action="/cart/<%=product._id%>" method="post">
-                                       <button class="btn btn-info">Add to cart</button>
-                                  </form>
+                                    <form action="/product/<%=data._id%>?_method=DELETE" method="post">
+                                        <button class="btn btn-info">delete</button>
+                                   </form>
                                </li>
                             </ul>
                             
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#"><%= product.name%></a></h6>
-                            <h5>£<%= product.price%></h5>
+                            <h6><a href="#"><%= data.name%></a></h6>
+                            <h5>£<%= data.price%></h5>
                         </div>
                     </div>
                        
                 </div>
-                <% }); %>
+               
             </div>
         </div>
     </section>
@@ -356,122 +356,7 @@
     </div>
     <!-- Banner End -->
 
-    <!-- Latest Product Section Begin -->
-    <section class="latest-product spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Latest Products</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                                
-                                <% sauces.forEach(function(product){ %>
-                                    <a href="/sauces" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="<%= product.image%>" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6><%= product.name%></h6>
-                                            <span>£<%= product.price%></span>
-                                        </div>
-                                    </a>
-                                    <% }); %> 
-                               
-                               
-                            </div>
-                            <div class="latest-prdouct__slider__item">
-                              
-                                <% drinks.forEach(function(product){ %>
-                                    <a href="drinks" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="<%= product.image%>" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6><%= product.name%></h6>
-                                            <span>£<%= product.price%></span>
-                                        </div>
-                                    </a>
-                                    <% }); %>   
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Top Rated Products</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                               
-                                <% dairy.forEach(function(product){ %>
-                                    <a href="/dairy" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="<%= product.image%>" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6><%= product.name%></h6>
-                                            <span>£<%= product.price%></span>
-                                        </div>
-                                    </a>
-                                    <% }); %>
-                                
-                            </div>
-                            <div class="latest-prdouct__slider__item">
-                                  
-                                <% beverages.forEach(function(product){ %>
-                                    <a href="/beverages" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="<%= product.image%>" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6><%= product.name%></h6>
-                                            <span>£<%= product.price%></span>
-                                        </div>
-                                    </a>
-                                    <% }); %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Review Products</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                                
-                                <% snacks.forEach(function(product){ %>
-                                    <a href="/snacks" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="<%= product.image%>" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6><%= product.name%></h6>
-                                            <span>£<%= product.price%></span>
-                                        </div>
-                                    </a>
-                                    <% }); %>
-                            </div>
-                            <div class="latest-prdouct__slider__item">
-                                <% oil.forEach(function(product){ %>
-                                    <a href="/oil" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="<%= product.image%>" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6><%= product.name%></h6>
-                                            <span>£<%= product.price%></span>
-                                        </div>
-                                    </a>
-                                    <% }); %> 
-                               
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
    
 
     <!-- Footer Section Begin -->

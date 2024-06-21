@@ -316,11 +316,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
   
 
-  app.post('/createproduct',  function(req, res){
+  app.post('/createproduct', upload.single('image'), function(req, res){
     var name = req.body.name
-    var image = req.body.imgUrl
-
-    console.log(image)
+    var image = req.file.filename;
+    //console.log(req.file)
     var category = req.body.category
     var price = req.body.price
   
