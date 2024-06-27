@@ -5,9 +5,11 @@ const multer = require('multer');
 const path = require('path')
 const mongoose = require('mongoose')
 const MongoStore = require('connect-mongo')
+const Nodemailer = require('nodemailer')
 const Product = require('./models/products')
 const Cart = require('./models/cart')
 const Order = require('./models/order')
+
 
 
 
@@ -413,26 +415,58 @@ const upload = multer({ storage: storage })
 app.get('/checkout', function(req, res){
   res.render('payment')
 } )
-// payments integration/////////////////////////////////////////////////////////
 
 
-//const stripe = await loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
-let secret = "pk_test_51P8IdV00gH7PcBWd8U0sdblVIa4uXmjSmgKkvLOurvDDwandn13EyiUixkTa7WbZeYfbe6ktSx43aOVv3IWMzWEP00qsPoODKu"
-//const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const stripe = require('stripe')(secret);
+// Function to format cart contents
+function formatCart(cart) {
+  let formattedCart = 'Your cart contains:\n\n';
+  let totalAmount = 0;
+
+  cart.forEach(item => {
+    formattedCart += `Name: ${item.name}\n`;
+    formattedCart += `Price: $${item.price}\n`;
+    formattedCart += `Quantity: ${item.qty}\n`;
+    formattedCart += `-----------------\n`;
+    totalAmount += item.price * item.qty;
+  });
+
+  formattedCart += `Total Price: $${totalAmount.toFixed(2)}\n`;
+  return formattedCart;
+}
+/// mailer config
+
+const sendEmail = (content) => {
+  var mailOptions = {
+    from: "support Team" ,
+    to: 'mayowaandrews723@gmail.com, bigonepete@gmail.com, sales@bolbukfood.com',
+    subject: `senders name: ${name},  senders email: ${sender},`,
+    text:content ,
+    html: '',
+    
+  };
+    transport.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return console.log(error);
+      }
+      console.log('Message sent: %s', info.messageId);
+    });
+  
+
+}
 
 app.post('/charge',  function(req, res, next) {
+  
   if (!req.session.cart) {
       return res.redirect('/products');
   }
   var cart = new Cart(req.session.cart);
-  
+  const cartContents = formatCart(req.session.cart);
   var stripe = require("stripe")(
       "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"
   );
 
   stripe.charges.create({
-      amount: cart.totalPrice * 100,
+      amount: cart.totalPrice * 100 * 1.18,
       currency: "gbp",
       source: req.body.token, // obtained with Stripe.js
       description: "Test Charge"
@@ -448,6 +482,7 @@ app.post('/charge',  function(req, res, next) {
           name: req.body.name,
           paymentId: charge.id
       });
+      sendMail(cartContents)
       order.save(function(err, result) {
           req.flash('success', 'Successfully bought product!');
           req.session.cart = null;
