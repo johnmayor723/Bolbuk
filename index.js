@@ -1,4 +1,5 @@
 const express = require('express')
+require("dotenv").config()
 const session = require('express-session')
 const methodOverride = require('method-override')
 const multer = require('multer');
@@ -13,16 +14,16 @@ const Order = require('./models/order')
 
 
 
+
 const { resolve } = require('path');
 
 
 const app = express()
 let port = process.env.port || 3000
 
-const DBURL = "mongodb+srv://admin:majoje1582@cluster0.cqudxbr.mongodb.net/?retryWrites=true&w=majority"
+const DBURL = process.env.DB_URL
 
 mongoose.connect(DBURL);
-
 
 
 app.set('view engine', 'ejs');
@@ -436,6 +437,13 @@ function formatCart(cart) {
 /// mailer config
 
 const sendEmail = (content) => {
+  var transport = Nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+     user:'mayowaandrews723@gmail.com',
+      pass: process.env.GMAIL_PASS 
+    }
+  })
   var mailOptions = {
     from: "support Team" ,
     to: 'mayowaandrews723@gmail.com, bigonepete@gmail.com, sales@bolbukfood.com',
@@ -461,9 +469,7 @@ app.post('/charge',  function(req, res, next) {
   }
   var cart = new Cart(req.session.cart);
   const cartContents = formatCart(req.session.cart);
-  var stripe = require("stripe")(
-      "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"
-  );
+  var stripe = require("stripe")(process.env.STRIPE_SECRET );
 
   stripe.charges.create({
       amount: cart.totalPrice * 100 * 1.18,
