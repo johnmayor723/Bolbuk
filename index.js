@@ -27,7 +27,7 @@ app.set('view engine', 'ejs');
 app.use(express.static("public1"));
 app.use(express.urlencoded())
 // Set up session
-app.use(methodOverride('_method'));
+
 //setting session parameters
 app.use(session({
   secret: 'mysupersecret',
@@ -36,7 +36,7 @@ app.use(session({
   
   store: MongoStore.create({ mongoUrl: DBURL })
 }));
-
+app.use(methodOverride('_method'));
 
 app.use('/uploads', express.static(resolve(__dirname, 'uploads')));
 
@@ -86,22 +86,20 @@ app.get("/products/:id", function(req, res){
 Product.findOne({_id:id })
   .then(data=>{
    console.log(data)
-   res.render('product', {data})
-   //res.render('edit', {data})
+   //res.render('product', {data})
+   res.render('edit', {data})
   })
 
 })
 app.put('/products/:id', async (req, res) => {
   const {id} = req.params;
   
-  let data = req.body.price
-  
-  console.log(data)
-  /*await Product.findByIdAndUpdate(id, {...data})
-  Product.find()
+  const data = req.body.products
+  await Product.findByIdAndUpdate(id, {...data})
   .then(data=>{
-    res.render('showall', {data});
-  })*/
+    res.send(data);
+  })
+  
   
 
 })
@@ -182,93 +180,172 @@ app.get('/snacks', (req, res)=> {
   Product.find()
   .then(data=>{
     const snacks = data.filter(product => product.category === 'snacks');
-    console.log(snacks)
-    res.render('snacks', {data:snacks})
+    const flour = data.filter(product => product.category === 'Flour Products');
+    const drinks = data.filter(product => product.category === 'Drinks');
+    const seasoning = data.filter(product => product.category === 'Seasoning');
+    const vegetables = data.filter(product => product.category === 'Vegetables and Fruits');
+    const sauces = data.filter(product => product.category === 'Sauces');
+    const pastes = data.filter(product => product.category === 'Paste and puree');
+    const dairy = data.filter(product => product.category === 'dairy');
+    const beverages = data.filter(product => product.category === 'Beverages');
+    const oil = data.filter(product => product.category === 'oil');
+
+    res.render('singleproduct', {data:snacks, name:"Snacks", oil, snacks, beverages, dairy, pastes, sauces, vegetables, seasoning, drinks, flour})
   })
 })
 app.get('/oil', (req, res)=> {
   Product.find()
   .then(data=>{
+    const snacks = data.filter(product => product.category === 'snacks');
+    const flour = data.filter(product => product.category === 'Flour Products');
+    const drinks = data.filter(product => product.category === 'Drinks');
+    const seasoning = data.filter(product => product.category === 'Seasoning');
+    const vegetables = data.filter(product => product.category === 'Vegetables and Fruits');
+    const sauces = data.filter(product => product.category === 'Sauces');
+    const pastes = data.filter(product => product.category === 'Paste and puree');
+    const dairy = data.filter(product => product.category === 'dairy');
+    const beverages = data.filter(product => product.category === 'Beverages');
     const oil = data.filter(product => product.category === 'oil');
-    
-    //console.log(snacks)
-    res.render('snacks', {data:oil})
+
+    res.render('singleproduct', {data:oil, name:"Oil", oil, snacks, beverages, dairy, pastes, sauces, vegetables, seasoning, drinks, flour})
   })
 })
 app.get('/flour', (req, res)=> {
   Product.find()
   .then(data=>{
-    const oil = data.filter(product => product.category === 'Flour Products');
-   // console.log(snacks)
-    res.render('flour', {data:oil})
+    const snacks = data.filter(product => product.category === 'snacks');
+    const flour = data.filter(product => product.category === 'Flour Products');
+    const drinks = data.filter(product => product.category === 'Drinks');
+    const seasoning = data.filter(product => product.category === 'Seasoning');
+    const vegetables = data.filter(product => product.category === 'Vegetables and Fruits');
+    const sauces = data.filter(product => product.category === 'Sauces');
+    const pastes = data.filter(product => product.category === 'Paste and puree');
+    const dairy = data.filter(product => product.category === 'dairy');
+    const beverages = data.filter(product => product.category === 'Beverages');
+    const oil = data.filter(product => product.category === 'oil');
+
+    res.render('singleproduct', {data:flour, name:"Flour products", oil, snacks, beverages, dairy, pastes, sauces, vegetables, seasoning, drinks, flour})
   })
 })
 app.get('/beverages', (req, res)=> {
   Product.find()
   .then(data=>{
-    const oil = data.filter(product => product.category === 'Beverages');
-    
-   // console.log(snacks)
-    res.render('flour', {data:oil})
+    const snacks = data.filter(product => product.category === 'snacks');
+    const flour = data.filter(product => product.category === 'Flour Products');
+    const drinks = data.filter(product => product.category === 'Drinks');
+    const seasoning = data.filter(product => product.category === 'Seasoning');
+    const vegetables = data.filter(product => product.category === 'Vegetables and Fruits');
+    const sauces = data.filter(product => product.category === 'Sauces');
+    const pastes = data.filter(product => product.category === 'Paste and puree');
+    const dairy = data.filter(product => product.category === 'dairy');
+    const beverages = data.filter(product => product.category === 'Beverages');
+    const oil = data.filter(product => product.category === 'oil');
+
+    res.render('singleproduct', {data:beverages, name:"Beverages", oil, snacks, beverages, dairy, pastes, sauces, vegetables, seasoning, drinks, flour})
   })
 })
 app.get('/dairy', (req, res)=> {
   Product.find()
   .then(data=>{
-    const oil = data.filter(product => product.category === 'dairy');
-    
-   // console.log(snacks)
-    res.render('flour', {data:oil})
+    const snacks = data.filter(product => product.category === 'snacks');
+    const flour = data.filter(product => product.category === 'Flour Products');
+    const drinks = data.filter(product => product.category === 'Drinks');
+    const seasoning = data.filter(product => product.category === 'Seasoning');
+    const vegetables = data.filter(product => product.category === 'Vegetables and Fruits');
+    const sauces = data.filter(product => product.category === 'Sauces');
+    const pastes = data.filter(product => product.category === 'Paste and puree');
+    const dairy = data.filter(product => product.category === 'dairy');
+    const beverages = data.filter(product => product.category === 'Beverages');
+    const oil = data.filter(product => product.category === 'oil');
+
+    res.render('singleproduct', {data:dairy, name:"Dairy products", oil, snacks, beverages, dairy, pastes, sauces, vegetables, seasoning, drinks, flour})
   })
 })
 app.get('/paste', (req, res)=> {
   Product.find()
   .then(data=>{
-    const oil = data.filter(product => product.category === 'Paste and puree');
-    
-   // console.log(snacks)
-    res.render('flour', {data:oil})
+    const snacks = data.filter(product => product.category === 'snacks');
+    const flour = data.filter(product => product.category === 'Flour Products');
+    const drinks = data.filter(product => product.category === 'Drinks');
+    const seasoning = data.filter(product => product.category === 'Seasoning');
+    const vegetables = data.filter(product => product.category === 'Vegetables and Fruits');
+    const sauces = data.filter(product => product.category === 'Sauces');
+    const pastes = data.filter(product => product.category === 'Paste and puree');
+    const dairy = data.filter(product => product.category === 'dairy');
+    const beverages = data.filter(product => product.category === 'Beverages');
+    const oil = data.filter(product => product.category === 'oil');
+
+    res.render('singleproduct', {data:pastes, name:"Pastes and puree", oil, snacks, beverages, dairy, pastes, sauces, vegetables, seasoning, drinks, flour})
   })
 })
 app.get('/sauces', (req, res)=> {
   Product.find()
   .then(data=>{
-    const oil = data.filter(product => product.category === 'Sauces');
-    
-   // console.log(snacks)
-    res.render('flour', {data:oil})
+    const snacks = data.filter(product => product.category === 'snacks');
+    const flour = data.filter(product => product.category === 'Flour Products');
+    const drinks = data.filter(product => product.category === 'Drinks');
+    const seasoning = data.filter(product => product.category === 'Seasoning');
+    const vegetables = data.filter(product => product.category === 'Vegetables and Fruits');
+    const sauces = data.filter(product => product.category === 'Sauces');
+    const pastes = data.filter(product => product.category === 'Paste and puree');
+    const dairy = data.filter(product => product.category === 'dairy');
+    const beverages = data.filter(product => product.category === 'Beverages');
+    const oil = data.filter(product => product.category === 'oil');
+
+    res.render('singleproduct', {data:sauces, name:"Sauces", oil, snacks, beverages, dairy, pastes, sauces, vegetables, seasoning, drinks, flour})
   })
 })
 app.get('/vegetablesandfruits', (req, res)=> {
   Product.find()
   .then(data=>{
-    const oil = data.filter(product => product.category === 'Vegetables and Fruits');
-    
-   // console.log(snacks)
-    res.render('flour', {data:oil})
+    const snacks = data.filter(product => product.category === 'snacks');
+    const flour = data.filter(product => product.category === 'Flour Products');
+    const drinks = data.filter(product => product.category === 'Drinks');
+    const seasoning = data.filter(product => product.category === 'Seasoning');
+    const vegetables = data.filter(product => product.category === 'Vegetables and Fruits');
+    const sauces = data.filter(product => product.category === 'Sauces');
+    const pastes = data.filter(product => product.category === 'Paste and puree');
+    const dairy = data.filter(product => product.category === 'dairy');
+    const beverages = data.filter(product => product.category === 'Beverages');
+    const oil = data.filter(product => product.category === 'oil');
+
+    res.render('singleproduct', {data:vegetables, name:"Vegetables and Fruits", oil, snacks, beverages, dairy, pastes, sauces, vegetables, seasoning, drinks, flour})
   })
 })
 app.get('/seasoning', (req, res)=> {
   Product.find()
   .then(data=>{
-    const oil = data.filter(product => product.category === 'Seasoning');
-    
-   // console.log(snacks)
-    res.render('flour', {data:oil})
+    const snacks = data.filter(product => product.category === 'snacks');
+    const flour = data.filter(product => product.category === 'Flour Products');
+    const drinks = data.filter(product => product.category === 'Drinks');
+    const seasoning = data.filter(product => product.category === 'Seasoning');
+    const vegetables = data.filter(product => product.category === 'Vegetables and Fruits');
+    const sauces = data.filter(product => product.category === 'Sauces');
+    const pastes = data.filter(product => product.category === 'Paste and puree');
+    const dairy = data.filter(product => product.category === 'dairy');
+    const beverages = data.filter(product => product.category === 'Beverages');
+    const oil = data.filter(product => product.category === 'oil');
+
+    res.render('singleproduct', {data:seasoning, name:"Seasoning", oil, snacks, beverages, dairy, pastes, sauces, vegetables, seasoning, drinks, flour})
   })
 })
 app.get('/drinks', (req, res)=> {
   Product.find()
   .then(data=>{
-    const oil = data.filter(product => product.category === 'Drinks');
-    
-   // console.log(snacks)
-    res.render('flour', {data:oil})
+    const snacks = data.filter(product => product.category === 'snacks');
+    const flour = data.filter(product => product.category === 'Flour Products');
+    const drinks = data.filter(product => product.category === 'Drinks');
+    const seasoning = data.filter(product => product.category === 'Seasoning');
+    const vegetables = data.filter(product => product.category === 'Vegetables and Fruits');
+    const sauces = data.filter(product => product.category === 'Sauces');
+    const pastes = data.filter(product => product.category === 'Paste and puree');
+    const dairy = data.filter(product => product.category === 'dairy');
+    const beverages = data.filter(product => product.category === 'Beverages');
+    const oil = data.filter(product => product.category === 'oil');
+
+    res.render('singleproduct', {data:drinks, name:"Drinks", oil, snacks, beverages, dairy, pastes, sauces, vegetables, seasoning, drinks, flour})
   })
 })
-
-
-
 
 
 
