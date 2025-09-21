@@ -286,7 +286,7 @@
                                         <h5><%=products.item.name%></h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        <%=products.item.price%>
+                                        £<%=products.item.price%>
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
@@ -296,7 +296,7 @@
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total">
-                                        $<%=totalPrice%>.00
+                                        £<%=totalPrice%>.00
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close"></span>
@@ -331,8 +331,8 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>  $<%=totalPrice%>.00</span></li>
-                            <li>Total <span>  $<%=totalPrice%>.00</span></li>
+                            <li>Subtotal <span>  £<%=totalPrice%>.00</span></li>
+                            <li>Total <span>  £<%=totalPrice%>.00</span></li>
                         </ul>
                         <a href="/payments" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
