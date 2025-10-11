@@ -13,6 +13,7 @@
   "dependencies": {
     "@stripe/stripe-js": "^3.3.0",
     "bcryptjs": "^2.4.3",
+    "compression": "^1.8.1",
     "connect-mongo": "^5.1.0",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.9",

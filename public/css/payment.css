@@ -1,0 +1,95 @@
+ <style>
+    .card {
+      max-width: 1000px;
+      margin: 2vh auto;
+    }
+
+    .card-top {
+      padding: 0.7rem 5rem;
+    }
+
+    .card-top a {
+      float: left;
+      margin-top: 0.7rem;
+    }
+
+    #logo {
+      font-family: 'Dancing Script';
+      font-weight: bold;
+      font-size: 1.6rem;
+    }
+
+    .card-body {
+      padding: 0 5rem 5rem 5rem;
+      background-image: url("https://i.imgur.com/4bg1e6u.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    @media(max-width:768px) {
+      .card-body {
+        padding: 0 1rem 1rem 1rem;
+        background-image: url("https://i.imgur.com/4bg1e6u.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      .card-top {
+        padding: 0.7rem 1rem;
+      }
+    }
+
+    .row {
+      margin: 0;
+    }
+
+    .upper {
+      padding: 1rem 0;
+      justify-content: space-evenly;
+    }
+
+    #payment {
+      margin: 0;
+      color: blue;
+    }
+
+    form span {
+      color: rgb(179, 179, 179);
+    }
+
+    form {
+      padding: 2vh 0;
+    }
+
+    input {
+      border: 1px solid rgba(0, 0, 0, 0.137);
+      padding: 1vh;
+      margin-bottom: 4vh;
+      outline: none;
+      width: 100%;
+      background-color: rgb(247, 247, 247);
+    }
+
+    .btn {
+      background-color: rgb(23, 4, 189);
+      border-color: rgb(23, 4, 189);
+      color: white;
+      width: 100%;
+      font-size: 0.9rem;
+      margin: 4vh 0 1.5vh 0;
+      padding: 1.5vh;
+      border-radius: 0;
+    }
+
+    .btn:hover {
+      color: white;
+      opacity: 0.9;
+    }
+
+    #cvv {
+      background-image: linear-gradient(to left, rgba(255, 255, 255, 0.575), rgba(255, 255, 255, 0.541)), url("https://img.icons8.com/material-outlined/24/000000/help.png");
+      background-repeat: no-repeat;
+      background-position-x: 95%;
+      background-position-y: center;
+    }
+  </style>

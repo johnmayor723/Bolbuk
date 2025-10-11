@@ -7,7 +7,7 @@
     <meta name="keywords" content="Bolbook foods limited">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BOLBUK | <%=name%></title>
+    <title>BOLBUK | <%=category%></title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -67,18 +67,11 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./shop-grid.html">Shop</a></li>
-                <li><a href="#">Pages</a>
-                    <ul class="header__menu__dropdown">
-                        <li><a href="/products">Products</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./contact.html">Contact</a></li>
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/shop">Shop</a></li>
+                
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -139,23 +132,23 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="/"><img height="120px" src="/img/logi.png"></a>
+                        <a href="/"><img height="60px" src="/img/bolbuklogo.jpeg"></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
+                            <li class="active"><a href="/">Home</a></li>
                             <li><a href="/About">About</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
+                                   
+                                    <li><a href="/products/cart">Shoping Cart</a></li>
+                                    
+                                   
                                 </ul>
                             </li>
-                            <li><a href="/">Blog</a></li>
+                            <li><a href="#">Blog</a></li>
                             <li><a href="/contact">Contact</a></li>
                         </ul>
                     </nav>
@@ -175,7 +168,7 @@
                                 <ul>
                                   
                                     
-                                      <li style="list-style:none"><a href="/cart"><i class="fa fa-shopping-bag"></i> <span><%=session.cart.totalQty%></span></a></li>
+                                      <li style="list-style:none"><a href="/products/cart"><i class="fa fa-shopping-bag"></i> <span><%=session.cart.totalQty%></span></a></li>
                                      
 
                                 </ul>
@@ -263,7 +256,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2><%=name%></h2>
+                        <h2><%=category%></h2>
                     </div>
                     <div class="featured__controls">
                         <ul>
@@ -277,15 +270,15 @@
                 </div>
             </div>
             <div class="row featured__filter">
-                <% data.forEach(function(product){ %>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" style="background:hsla(0, 53%, 93%, 0.842)">
+                <% products.forEach(function(product){ %>
+                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" style="background:hsla(0, 8%, 97%, 0.842)">
                     <div  class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg=<%=product.image%>>
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                                 <li>
-                                    <form action="/cart/<%=product._id%>" method="post">
+                                    <form action="/products/cart/<%=product._id%>" method="post">
                                        <button class="btn btn-info">Add to cart</button>
                                   </form>
                                </li>
@@ -324,125 +317,7 @@
     </div>
     <!-- Banner End -->
 
-    <!-- Latest Product Section Begin -->
-    <section class="latest-product spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Latest Products</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                                
-                                <% sauces.forEach(function(product){ %>
-                                    <a href="/sauces" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="<%= product.image%>" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6><%= product.name%></h6>
-                                            <span>£<%= product.price%></span>
-                                        </div>
-                                    </a>
-                                    <% }); %> 
-                               
-                               
-                            </div>
-                            <div class="latest-prdouct__slider__item">
-                              
-                                <% drinks.forEach(function(product){ %>
-                                    <a href="drinks" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="<%= product.image%>" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6><%= product.name%></h6>
-                                            <span>£<%= product.price%></span>
-                                        </div>
-                                    </a>
-                                    <% }); %>   
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Top Rated Products</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                               
-                                <% dairy.forEach(function(product){ %>
-                                    <a href="/dairy" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="<%= product.image%>" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6><%= product.name%></h6>
-                                            <span>£<%= product.price%></span>
-                                        </div>
-                                    </a>
-                                    <% }); %>
-                                
-                            </div>
-                            <div class="latest-prdouct__slider__item">
-                                  
-                                <% beverages.forEach(function(product){ %>
-                                    <a href="/beverages" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="<%= product.image%>" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6><%= product.name%></h6>
-                                            <span>£<%= product.price%></span>
-                                        </div>
-                                    </a>
-                                    <% }); %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Review Products</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                                
-                                <% snacks.forEach(function(product){ %>
-                                    <a href="/snacks" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="<%= product.image%>" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6><%= product.name%></h6>
-                                            <span>£<%= product.price%></span>
-                                        </div>
-                                    </a>
-                                    <% }); %>
-                            </div>
-                            <div class="latest-prdouct__slider__item">
-                                <% oil.forEach(function(product){ %>
-                                    <a href="/oil" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="<%= product.image%>" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6><%= product.name%></h6>
-                                            <span>£<%= product.price%></span>
-                                        </div>
-                                    </a>
-                                    <% }); %> 
-                               
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-   
-
-    <!-- Blog Section Begin -->
+    
     
 
     <!-- Footer Section Begin -->
