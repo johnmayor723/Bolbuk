@@ -70,12 +70,31 @@ router.post('/cart/:id', async (req, res) => {
   res.redirect('/');
 });
 
-// View cart
+router.get('/cart', (req, res) => {
+  const cart = req.session.cart;
+
+  if (!cart) {
+    return res.render('payments', { products: [], totalPrice: 0 });
+  }
+
+  // Convert items object to array
+  const products = Object.values(cart.items);
+
+  console.log("🛒 Cart Items Array:", products);
+
+  res.render('payments', {
+    products,
+    totalPrice: cart.totalPrice
+  });
+});
+
+
+/* View cart
 router.get('/cart', (req, res) => {
   if (!req.session.cart) return res.render('shopping-cart', { products: null });
   const cart = new Cart(req.session.cart.items);
   res.render('shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice });
-});
+});*/
 
 // Checkout
 router.get('/checkout', (req, res) => {
