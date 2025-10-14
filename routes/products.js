@@ -119,7 +119,10 @@ router.get('/checkout', (req, res) => {
 
 // Charge
 router.post('/charge', async (req, res) => {
-  if (!req.session.cart) return res.redirect('/products');
+   if (!req.session.cart || !req.session.cart.items) {
+    console.log("⚠️ No cart found in session");
+    return res.redirect('/products');
+  }
 
   const cart = new Cart(req.session.cart);
   const formattedCart = formatCart(cart.generateArray());
@@ -144,7 +147,7 @@ router.post('/charge', async (req, res) => {
     res.redirect('/');
   } catch (err) {
     console.error(err);
-    res.redirect('/checkout');
+    res.redirect('/products/cart');
   }
 });
 

@@ -1,33 +1,31 @@
 module.exports = function Cart(initItems) {
-    this.items = initItems;
+  this.items = initItems || {}; // 🟢 Default to empty object
+  this.totalQty = 0;
+  this.totalPrice = 0;
 
-    this.totalQty = 0;
-    this.totalPrice = 0;
+  for (const key in this.items) {
+    const cartItem = this.items[key];
+    if (cartItem?.item?.price && cartItem.qty) { // 🛡 guard check
+      this.totalQty += cartItem.qty;
+      this.totalPrice += cartItem.qty * cartItem.item.price;
+    }
+  }
 
-    if (this.items) {
-        for (var key in this.items) {
-            this.totalQty += this.items[key].qty;
-            this.totalPrice += this.items[key].qty * this.items[key].item.price;
-        }
+  this.add = function (item, id) {
+    if (!this.items[id]) {
+      this.items[id] = { qty: 0, item: item, price: 0, imagePath: "" };
     }
 
-    this.add = function (item, id) {
-        var storedItem = this.items[id];
-        if (!storedItem) {
-            storedItem = this.items[id] = {qty: 0, item: item, price: 0, imagePath:""};
-        }
-        storedItem.qty++;
-        storedItem.price = storedItem.item.price * storedItem.qty;
-        storedItem.imagePath = storedItem.item.imagePath;
-        this.totalQty++;
-        this.totalPrice += storedItem.price;
-    };
+    const storedItem = this.items[id];
+    storedItem.qty++;
+    storedItem.price = storedItem.item.price * storedItem.qty;
+    storedItem.imagePath = storedItem.item.imagePath;
 
-    this.generateArray = function () {
-        var arr = [];
-        for (var id in this.items) {
-            arr.push(this.items[id]);
-        }
-        return arr;
-    };
+    this.totalQty++;
+    this.totalPrice += storedItem.item.price; // 🔧 Fix double-count bug
+  };
+
+  this.generateArray = function () {
+    return Object.values(this.items);
+  };
 };

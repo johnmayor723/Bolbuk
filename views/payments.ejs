@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
+    
 </head>
 
 <body>
@@ -69,17 +70,10 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                   
-                                    <li><a href="/about">About</a></li>
-                                    <li><a href="/contact">Contact</a></li>
-                                   
-                                </ul>
-                            </li>
-                           
-                            <li><a href="/contact">Contact</a></li>
+               
+                
+             
+                <li><a href="/contact">Contact</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -226,7 +220,8 @@
                 <input type="hidden" value="<%= totalPrice %>" name="amount">
               </div>
 
-              <button class="btn btn-primary">Submit Payment</button>
+            <button id="submit-btn" class="btn btn-primary">Submit Payment</button>
+
             </form>
           </div>
         </div>
@@ -284,30 +279,96 @@
   <script src="/js/owl.carousel.min.js"></script>
   <script src="/js/main.js"></script>
 
-  <!-- Stripe Script -->
-  <script src="https://js.stripe.com/v3/"></script>
-  <script>
-    const stripe = Stripe('pk_live_51P8IdV00gH7PcBWdmZmzWNWJNLM7SbYfQAmjtZTvrcEfqNfND15VQIXLkHjo6DiZseOlp8SVda4G2xM1migII5zO00aImL2DVw');
-    const elements = stripe.elements();
-    const cardElement = elements.create('card');
-    cardElement.mount('#card-element');
+ <style>
+  /* Card container */
+  #card-element {
+    width: 100%;
+    min-width: 280px;
+    max-width: 500px;
+    height: 45px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    margin-top: 8px;
+    transition: all 0.3s ease;
+  }
 
-    const form = document.getElementById('payment-form');
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const { token, error } = await stripe.createToken(cardElement);
-      if (error) {
-        document.getElementById('card-errors').textContent = error.message;
-      } else {
-        const hiddenInput = document.createElement('input');
-        hiddenInput.setAttribute('type', 'hidden');
-        hiddenInput.setAttribute('name', 'token');
-        hiddenInput.setAttribute('value', token.id);
-        form.appendChild(hiddenInput);
-        form.submit();
-      }
-    });
-  </script>
+  /* Focus effect */
+  #card-element.StripeElement--focus {
+    border-color: #FE9801; /* orange highlight */
+    box-shadow: 0 0 6px rgba(254, 152, 1, 0.4);
+  }
+
+  /* Layout helpers */
+  #payment-form {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  #card-errors {
+    margin-top: 10px;
+    color: #fa755a;
+    font-size: 14px;
+  }
+</style>
+
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  const stripe = Stripe('pk_live_51P8IdV00gH7PcBWdmZmzWNWJNLM7SbYfQAmjtZTvrcEfqNfND15VQIXLkHjo6DiZseOlp8SVda4G2xM1migII5zO00aImL2DVw');
+  const elements = stripe.elements();
+
+  // 💅 Custom styles for the card input
+  const style = {
+    base: {
+      color: '#32325d',
+      fontFamily: 'Arial, sans-serif',
+      fontSize: '16px',
+      '::placeholder': { color: '#a0aec0' },
+    },
+    invalid: { color: '#fa755a' }
+  };
+
+  const card = elements.create('card', { style });
+  card.mount('#card-element');
+
+  // Handle real-time validation errors
+  card.on('change', event => {
+    const displayError = document.getElementById('card-errors');
+    displayError.textContent = event.error ? event.error.message : '';
+  });
+
+  const form = document.getElementById('payment-form');
+  const submitBtn = document.getElementById('submit-btn');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Processing...';
+
+    const { token, error } = await stripe.createToken(card);
+
+    if (error) {
+      document.getElementById('card-errors').textContent = error.message;
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Pay Now';
+    } else {
+      // Append the token to the form and submit to backend
+      const hiddenInput = document.createElement('input');
+      hiddenInput.setAttribute('type', 'hidden');
+      hiddenInput.setAttribute('name', 'token');
+      hiddenInput.setAttribute('value', token.id);
+      form.appendChild(hiddenInput);
+
+      form.submit();
+    }
+  });
+</script>
 
 </body>
 </html>
