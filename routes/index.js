@@ -55,7 +55,8 @@ router.get('/:category', async (req, res) => {
       snacks: 'Snacks',
       alcohol: 'Alcohol',
       grains: 'Grains and ceareals',
-      drinks: 'Drinks'      
+      drinks: 'Drinks',
+      hair: 'Hair care',    
     };
 
     const categoryName = categoryMap[category.toLowerCase()];
