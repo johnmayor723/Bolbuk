@@ -51,12 +51,12 @@ router.get('/:category', async (req, res) => {
       sauces: 'Sauces',
       vegetablesandfruits: 'Vegetables and Fruits',
       seasoning: 'Seasoning',
-      oil: 'Oil Products',
+      oil: 'Oil',
       snacks: 'Snacks',
       alcohol: 'Alcohol',
       grains: 'Grains and ceareals',
       drinks: 'Drinks',
-      hair: 'Hair care',    
+      hair: 'Hair care',
     };
 
     const categoryName = categoryMap[category.toLowerCase()];
@@ -64,7 +64,6 @@ router.get('/:category', async (req, res) => {
 
     const products = await Product.find({ category: categoryName });
     console.log(`Found ${products.length} products in category ${categoryName}`);
-    console.log(products);
     res.render('singleproduct', { category: categoryName, products });
   } catch (err) {
     console.error(err);
