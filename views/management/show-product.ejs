@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= product.name %> - Bolbuk Foods</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark px-4">
+    <a class="navbar-brand fw-bold text-white" href="/management">Bolbuk Foods</a>
+  </nav>
+
+  <div class="p-5 mb-4 bg-light rounded-3 text-center">
+    <h1 class="display-6 fw-bold"><%= product.name %></h1>
+    <p class="lead">Manage or update this product</p>
+  </div>
+
+  <div class="container" style="max-width: 700px;">
+    <div class="card shadow-sm mb-4">
+      <% if (product.image) { %>
+        <img src="<%= product.image %>" class="card-img-top" alt="<%= product.name %>">
+      <% } else { %>
+        <img src="https://via.placeholder.com/400x250?text=No+Image" class="card-img-top">
+      <% } %>
+      <div class="card-body">
+        <h5><%= product.name %></h5>
+        <p class="text-muted">₦<%= product.price %></p>
+        <p><%= product.description %></p>
+        <p class="text-secondary"><strong>Category:</strong> <%= product.category %></p>
+        <p><small>Added on <%= product.createdAt.toDateString() %></small></p>
+      </div>
+    </div>
+
+    <h4 class="mb-3">Edit Product</h4>
+    <form action="/management/<%= product._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label">Product Name</label>
+        <input type="text" name="name" class="form-control" value="<%= product.name %>" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea name="description" class="form-control" rows="3"><%= product.description %></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Category</label>
+        <select name="category" class="form-select" required>
+          <option value="Snacks" <%= product.category === 'Snacks' ? 'selected' : '' %>>Snacks</option>
+          <option value="Oil" <%= product.category === 'Oil' ? 'selected' : '' %>>Oil</option>
+          <option value="Flour Products" <%= product.category === 'Flour Products' ? 'selected' : '' %>>Flour Products</option>
+          <option value="Beverages" <%= product.category === 'Beverages' ? 'selected' : '' %>>Beverages</option>
+          <option value="Dairy Products" <%= product.category === 'Dairy Products' ? 'selected' : '' %>>Dairy Products</option>
+          <option value="Paste and Puree" <%= product.category === 'Paste and Puree' ? 'selected' : '' %>>Paste and Puree</option>
+          <option value="Sauces" <%= product.category === 'Sauces' ? 'selected' : '' %>>Sauces</option>
+          <option value="Vegetables and Fruits" <%= product.category === 'Vegetables and Fruits' ? 'selected' : '' %>>Vegetables and Fruits</option>
+          <option value="Seasoning" <%= product.category === 'Seasoning' ? 'selected' : '' %>>Seasoning</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Price (₦)</label>
+        <input type="number" name="price" class="form-control" value="<%= product.price %>" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Change Image (optional)</label>
+        <input type="file" name="image" class="form-control">
+      </div>
+
+      <button type="submit" class="btn btn-success w-100 mb-2">Save Changes</button>
+    </form>
+
+    <form action="/management/<%= product._id %>?_method=DELETE" method="POST">
+      <button type="submit" class="btn btn-danger w-100">Delete Product</button>
+    </form>
+
+    <a href="/management" class="btn btn-secondary mt-3 w-100">Back</a>
+  </div>
+</body>
+</html>
