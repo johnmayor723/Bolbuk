@@ -37,7 +37,7 @@ router.post("/create-product", upload.single("image"), async (req, res) => {
     const image = req.file ? `/uploads/${req.file.filename}` : null;
 
     await Product.create({ name, description, price, category, image });
-    res.redirect("/management");
+    res.redirect("/management/admin");
   } catch (err) {
     console.error(err);
     res.send("Error creating product");
